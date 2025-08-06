@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce-cart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaliMali15/ecommerce-carts-with-caching.git"
+  },
+  "author": "Bhavesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaliMali15/ecommerce-carts-with-caching/issues"
+  },
+  "homepage": "https://github.com/MaliMali15/ecommerce-carts-with-caching#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
