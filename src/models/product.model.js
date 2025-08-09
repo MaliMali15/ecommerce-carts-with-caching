@@ -14,16 +14,7 @@ const productSchema = new Schema({
         required: true
     },
 
-    stock: {
-        type: Number,
-        required:true
-    },
-
-    discount: {
-        type: Number
-    },
-
-    image: {
+    productImage: {
         type: String,
         required: true
     }

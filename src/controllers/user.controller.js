@@ -152,7 +152,13 @@ const logoutUser = asyncHandler(async (req, res) => {
 })
 
 const getCurrentUser = asyncHandler(async (req, res) => {
+    const user = req.user
     
+    return res.status(200).json(new ApiResponse(
+        200,
+        user,
+        "User information fetched successfully"
+    ))
 })
 
-export {registerUser,loginUser,tokenRefresher,logoutUser}
+export {registerUser,loginUser,tokenRefresher,logoutUser,getCurrentUser}
