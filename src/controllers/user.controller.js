@@ -73,25 +73,25 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new ApiError(404,"User doesn't exist")
     }
 
-    if (!await isPassCorrect(password)) {
+    if (!await user.isPassCorrect(password)) {
         throw new ApiError(400,"Incorrect Password")
     }
 
-    const { accessToken, refreshToken } = generateAccessandRefreshToken(user._id)
+    const { accessToken, refreshToken } = await generateAccessandRefreshToken(user._id)
 
-    const loggedInUser=User.findOne({refreshToken}).select("-password -refreshToken")
+    const loggedInUser=await User.findOne({refreshToken}).select("-password -refreshToken")
     
     return res.status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
-        .json(new ApiResponse(
-            200,
-            {
-                loggedInUser,
-                accessToken,
-                refreshToken
-            },
-            "User logged in successfully"
+    .json(new ApiResponse(
+        200,
+        {
+            loggedInUser,
+            accessToken,
+            refreshToken
+        },
+        "User logged in successfully"
     ))
 
 })
@@ -111,16 +111,16 @@ const tokenRefresher = asyncHandler(async (req, res) => {
         throw new ApiError(401,"Refresh Token expired")
     }
 
-    const { accessToken, refreshToken } = generateAccessandRefreshToken(user._id)
+    const { accessToken, refreshToken } = await generateAccessandRefreshToken(user._id)
     
     return res.status(200)
-        .cookie("accesToken", accessToken, options)
+        .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
         .json(new ApiResponse(
             200,
             {
-                accessToken,
-                refreshToken
+                accessToken:accessToken,
+                refreshToken:refreshToken
             },
             "Tokens refreshed successfully"
     ))
@@ -141,7 +141,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     )
 
     return res.status(200)
-        .clearCookie("accesToken", options)
+        .clearCookie("accessToken", options)
         .clearCookie("refreshToken", options)
         .json(new ApiResponse(
             204,

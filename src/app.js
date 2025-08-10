@@ -16,8 +16,10 @@ app.use(express.urlencoded({ extended: true, limit: "20kb" }))
 
 import userRouter from "./routes/user.routes.js"
 import productRouter from "./routes/product.routes.js"
+import cartRouter from "./routes/cart.routes.js"
 
 app.use("/user", userRouter)
-app.use("/product",productRouter)
+app.use("/product", productRouter)
+app.use("/cart",cartRouter)
 
 export default app
