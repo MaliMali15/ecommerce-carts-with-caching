@@ -1,0 +1,22 @@
+# Don't copy dependencies
+node_modules
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Git stuff
+.git
+.gitignore
+
+# Environment files
+.env
+.env.local
+
+# Docker files themselves (optional)
+Dockerfile
+.dockerignore
+
+# OS / IDE junk
+.DS_Store
+.vscode
+*.swp
